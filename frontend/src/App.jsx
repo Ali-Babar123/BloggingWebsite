@@ -19,75 +19,71 @@ import EditBlog from './Components/EditBlog';
 import ViewBlog from './Components/ViewBlog';
 
 
-
-
 const AppContent = () => {
-  const location = useLocation()
+  const location = useLocation();
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [authorId, setAuthorId] = useState('')
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authorId, setAuthorId] = useState('');
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const result = await LoginCheck()
+        const result = await LoginCheck();
         if (result.loggedIn) {
-          setIsLoggedIn(true)
-          if (isLoggedIn) {
-            setAuthorId(result.user._id)
-          }
+          setIsLoggedIn(true);
+          setAuthorId(result.user._id); // Directly use `result.loggedIn`.
         } else {
-          setIsLoggedIn(false)
+          setIsLoggedIn(false);
         }
       } catch (error) {
-        console.log(error)
+        console.error("Error in LoginCheck:", error);
+        toast.error("Failed to verify login. Please try again.");
       }
-    }
-    getUser()
-  }, [location])
+    };
+    getUser();
+  }, [location]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
     navigate('/');
     setIsLoggedIn(false);
-  }
+  };
+
   const isLoginPageOrSignUpPage = location.pathname === '/login' || location.pathname === '/register';
 
   return (
     <>
       {!isLoginPageOrSignUpPage && <Navbar handleLogout={handleLogout} />}
-      {isLoggedIn ? (
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path='/addBlog' element={<AddBlog AuthorId={authorId} />}></Route>
-          <Route exact path='/editBlog/:id' element={<EditBlog />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route exact path='/login' element={<Login />} />
-          <Route exact path='/' element={<Home />} />
-          <Route exact path='/blog' element={<Blog />} />
-          <Route exact path='/author' element={<Author />} />
-          <Route exact path='/contact' element={<Contact />} />
-          <Route exact path='/register' element={<Register />} />
-          <Route exact path='/viewBlog/:id' element={<ViewBlog />} />
-
-        </Routes>
-      )
-      }
+      <Routes>
+        {isLoggedIn ? (
+          <>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/addBlog" element={<AddBlog AuthorId={authorId} />} />
+            <Route path="/editBlog/:id" element={<EditBlog />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/author" element={<Author />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/viewBlog/:id" element={<ViewBlog />} />
+          </>
+        )}
+        <Route path="*" element={<div>404 Not Found</div>} /> {/* Fallback route */}
+      </Routes>
       {!isLoginPageOrSignUpPage && <Footer />}
-      <ToastContainer /> 
     </>
-
   );
 };
-
 
 const App = () => {
   return (
     <>
       <AppContent />
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 };
