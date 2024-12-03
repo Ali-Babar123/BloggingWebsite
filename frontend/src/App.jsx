@@ -1,6 +1,6 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import axiosInstance from './Components/axiosInstance';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Home from './Components/Home';
 import Navbar from './Components/Navbar';
@@ -26,10 +26,10 @@ const App = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const result = await LoginCheck();
-        if (result.loggedIn) {
+        const response = await axiosInstance.get('/api/check-login'); // Example endpoint for checking login
+        if (response.data.loggedIn) {
           setIsLoggedIn(true);
-          setAuthorId(result.user._id);
+          setAuthorId(response.data.user._id);
         } else {
           setIsLoggedIn(false);
         }
@@ -40,6 +40,7 @@ const App = () => {
     };
     getUser();
   }, [location]);
+  
 
   const handleLogout = () => {
     localStorage.removeItem('token');

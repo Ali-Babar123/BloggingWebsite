@@ -3,7 +3,6 @@ import BlogImage from '../assets/blog.jpeg';
 import AiImage from '../assets/Ai.jpeg'
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from 'react-router-dom'
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import AOS from 'aos';
 import "aos/dist/aos.css"

@@ -148,7 +148,7 @@ router.get('/authors', async (req, res) => {
 // To display unique category
 router.get('/categories', async (req, res) => {
     try {
-        let categories = [
+        const categories = [
             "Technology",
             "Sports",
             "Business",
