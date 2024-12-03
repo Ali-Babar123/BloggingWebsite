@@ -18,7 +18,7 @@ const Register = () => {
         email,
         password,
       });
-
+      console.log(response)
       const json = response.data; // Axios automatically parses the response
       console.log(json);
 

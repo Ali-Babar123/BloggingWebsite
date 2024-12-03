@@ -15,12 +15,12 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
-  });
+});
 
 app.use(express.json()) // middleware 
 
 const port = process.env.PORT;
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL).then(() => console.log('Connected to Mongo Successfully')).catch((e) => console.error(e.message))
 
 app.use('/api/auth', require('./Routes/auth'));
 app.use('/api/blog', require('./Routes/blog'))

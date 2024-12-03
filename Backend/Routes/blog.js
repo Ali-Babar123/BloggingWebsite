@@ -147,14 +147,19 @@ router.get('/authors', async (req, res) => {
 
 // To display unique category
 router.get('/categories', async (req, res) => {
-    let categories = [
-        "Technology",
-        "Sports",
-        "Business",
-        "Entertainment",
-        "Politics",
-        ];
-    res.json(categories);
+    try {
+        let categories = [
+            "Technology",
+            "Sports",
+            "Business",
+            "Entertainment",
+            "Politics",
+            ];
+        res.json(categories);
+    } catch (error) {
+        console.log("category errro: " , error)
+    }s
+    
 })
 
 module.exports = router;
