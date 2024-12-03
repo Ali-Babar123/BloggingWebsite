@@ -50,7 +50,7 @@ const App = () => {
   const isLoginPageOrSignUpPage = location.pathname === '/login' || location.pathname === '/register';
 
   return (
-    <Router>
+    <>
       {!isLoginPageOrSignUpPage && <Navbar handleLogout={handleLogout} />}
       <Routes>
         {isLoggedIn ? (
@@ -74,7 +74,7 @@ const App = () => {
       </Routes>
       {!isLoginPageOrSignUpPage && <Footer />}
       <ToastContainer />
-    </Router>
+    </>
   );
 };
 
