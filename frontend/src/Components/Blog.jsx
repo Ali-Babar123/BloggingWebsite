@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BlogImage from '../assets/blog.jpeg';
 import axios from 'axios';
+import axiosInstance from './axiosInstance';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/blog/displayblog')
+    axiosInstance.get('/api/blog/displayblog')
       .then(response => {
         setBlogs(response.data);
       })
@@ -34,7 +35,7 @@ const Blog = () => {
                 className={`card-item border h-full transition duration-300 transform hover:scale-105 bg-gray-300 shadow-md ${isLargeCard ? 'col-span-6' : 'col-span-3'}`}
               >
                 <img
-                  src={`http://localhost:3000/${blog.image}`}
+                  src={BlogImage}
                   alt={blog.title}
                   className="w-full h-48 object-cover rounded-t-md"
                 />

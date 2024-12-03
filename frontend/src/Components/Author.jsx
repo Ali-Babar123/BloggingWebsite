@@ -4,12 +4,14 @@
 import {useState, useEffect} from 'react'
 import AuhtorImage from '../assets/boy.jpeg'
 import axios from 'axios'
+import axiosInstance from './axiosInstance';
+
 
 const Author = () => {
     const [authors , setAuthors] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/blog/authors')
+        axiosInstance.get('/api/blog/authors')
         .then(response => {
             setAuthors(response.data);
             console.log(response.data)

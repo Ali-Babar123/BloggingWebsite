@@ -5,6 +5,8 @@ import axios from 'axios';
 import LoginCheck from '../LoginCheck'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axiosInstance from './axiosInstance';
+import BlogImage from '../assets/blog.jpeg'
 
 const Dashboard = () => {
   const [blogs, setBlogs] = useState([])
@@ -29,7 +31,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getBlogs = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/blog/displayblog/${authorId}`)
+        const response = await axiosInstance.get(`/api/blog/displayblog/${authorId}`)
         console.log(response.data)
         setBlogs(response.data || [])
       } catch (error) {
@@ -41,7 +43,7 @@ const Dashboard = () => {
 
   const handleDeleteBlog = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/api/blog/deleteblog/${id}`)
+      const response = await axiosInstance.delete(`/api/blog/deleteblog/${id}`)
       console.log(response.data)
       setBlogs(blogs.filter((blog) => blog._id !== id))
       toast.error('Blog deleted successfully!',{
@@ -109,7 +111,7 @@ const Dashboard = () => {
               <tr key={blog._id} className="border-b">
                 <td className="px-6 py-4">
                   <img
-                    src={`http://localhost:3000/${blog.image}`}
+                    src={BlogImage}
                     alt={blog.title}
                     className="w-12 h-12 object-cover rounded-md"
                   />

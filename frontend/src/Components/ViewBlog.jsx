@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
-
+import axiosInstance from './axiosInstance';
 import axios from 'axios';
+import BlogImage from '../assets/blog.jpeg'
 import { Link } from 'react-router-dom';
 // Function to capitalize each word in a string
 const capitalize = (str) => {
@@ -19,7 +20,7 @@ const ViewBlog = () => {
     useEffect(() => {
         const getBlog = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/blog/blog/${id}`);
+                const response = await axiosInstance.get(`api/blog/blog/${id}`);
                 console.log(response.data);
                 setBlog(response.data);
             } catch (error) {
@@ -34,7 +35,7 @@ const ViewBlog = () => {
             {blog ? (
                 <div className='flex flex-col'>
                     <img
-                        src={`http://localhost:3000/${blog.image}`}
+                        src={BlogImage}
 
                         alt={blog.title}
                         className="w-full h-96 object-cover rounded-t-md"

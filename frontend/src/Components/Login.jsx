@@ -1,6 +1,7 @@
 // Login.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from './axiosInstance';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,19 +12,20 @@ const Login = () => {
     
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
+      const response = await axiosInstance.post('/api/auth/login', {
+        email: credentials.email,
+        password: credentials.password,
+      }, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: credentials.email, password: credentials.password })
       });
-
-      const json = await response.json();
+    
+      const json = response.data; // Axios already parses the JSON response
       console.log(json);
-
+    
       if (json.success) {
-        localStorage.setItem('token', json.authToken)
+        localStorage.setItem('token', json.authToken);
         navigate('/dashboard');
       } else {
         alert("Invalid Credentials");
@@ -31,6 +33,7 @@ const Login = () => {
     } catch (error) {
       console.error("Error in fetching User:", error);
     }
+    
   };
 
   const onChange = (e) => {

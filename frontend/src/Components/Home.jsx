@@ -9,13 +9,14 @@ import AOS from 'aos';
 import "aos/dist/aos.css"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import axiosInstance from './axiosInstance';
 
 const Home = () => {
     const [blogs, setBlogs] = useState([]);
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/blog/displayblog')
+        axiosInstance.get('/api/blog/displayblog')
             .then(response => {
                 setBlogs(response.data);
                 console.log(response.data)
@@ -26,7 +27,7 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/blog/categories')
+        axiosInstance.get('/api/blog/categories')
             .then(response => {
                 setCategories(response.data);
                 console.log(response.data);
@@ -113,7 +114,7 @@ const Home = () => {
                         blogs.map((blog) => (
                             <div key={blog._id} className="card border rounded-md bg-gray-300 shadow-md transition duration-300 transform hover:scale-105">
                                 <img
-                                    src={`http://localhost:3000/${blog.image}`}
+                                    src={BlogImage}
 
                                     alt={blog.title}
                                     className="w-full h-48 object-cover rounded-t-md"

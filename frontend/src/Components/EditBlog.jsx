@@ -4,6 +4,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill';
+import axiosInstance from './axiosInstance';
+
 
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -24,7 +26,7 @@ const EditBlog = () => {
     useEffect(() => {
         const getBlog = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/blog/blog/${id}`)
+                const response = await axiosInstance.get(`/api/blog/blog/${id}`)
                 console.log(response.data)
                 setBlog(response.data)
             } catch (error) {
@@ -38,7 +40,7 @@ const EditBlog = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:3000/api/blog/updateblog/${id}`, blog)
+            const response = await axiosInstance.put(`/api/blog/updateblog/${id}`, blog)
             navigate('/dashboard')
             toast.success('Blog Updated successfully', {
                 position: "top-right",

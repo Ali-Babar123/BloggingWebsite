@@ -4,6 +4,7 @@ import ReactQuill from 'react-quill';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import axiosInstance from './axiosInstance';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -33,8 +34,8 @@ const AddBlog = ({ AuthorId }) => {
         formData.append('image', image); // Attach the image file
 
         try {
-            const response = await axios.post(
-                `http://localhost:3000/api/blog/addblog/${AuthorId}`, // Ensure `AuthorId` is passed correctly
+            const response = await axiosInstance.post(
+                `/api/blog/addblog/${AuthorId}`, // Ensure `AuthorId` is passed correctly
                 formData,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' },

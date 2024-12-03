@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from './axiosInstance';
 
 const Register = () => {
   const [credentials, setCredentials] = useState({ username: '', email: '', password: '' });
@@ -10,23 +11,21 @@ const Register = () => {
     const {username, email, password} = credentials;
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/createuser', {
-        method: 'POST',
+      const response = await axiosInstance.post('/api/auth/createuser', {
+        username,
+        email,
+        password,
+      }, {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          username, 
-          email,
-          password
-        }),
       });
-
-      const json = await response.json();
+    
+      const json = response.data; // Axios automatically parses the response
       console.log(json);
-
+    
       if (json.success) {
-        localStorage.setItem('token', json.authToken)
+        localStorage.setItem('token', json.authToken);
         navigate('/dashboard');
       } else {
         alert(json.message || "Registration failed.");
@@ -35,6 +34,7 @@ const Register = () => {
       console.error("Error in registration:", error);
       alert("An error occurred. Please try again later.");
     }
+    
   };
 
   const onChange = (e) => {

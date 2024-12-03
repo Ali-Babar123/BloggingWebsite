@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const mongooseURI = 'mongodb://localhost:27017/Blogging'
+const mongooseURI = process.env.MONGO_URL
 
 const connectToMongo = () =>{
     mongoose.connect(mongooseURI).then(() => console.log('Connected to Mongo Successfully')).catch((e)=> console.error(e.message))
