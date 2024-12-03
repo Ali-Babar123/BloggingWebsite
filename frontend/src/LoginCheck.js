@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "./Components/axiosInstance";
 
 const LoginCheck = async () => {
   const token = localStorage.getItem("token");  
@@ -9,7 +9,7 @@ const LoginCheck = async () => {
     };  
   }
   try {
-    const response = await axios.post("http://localhost:3000/api/auth/getuser", null, {
+    const response = await axiosInstance.post("/api/auth/getuser", null, {
       headers: {
         authToken: localStorage.getItem("token"),
       },
