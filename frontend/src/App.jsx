@@ -1,4 +1,3 @@
-// App.jsx
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,14 +11,13 @@ import Footer from './Components/Footer';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Dashboard from './Components/Dasboard';
-import React, { useEffect, useState } from 'react'
-import LoginCheck from './LoginCheck'
+import React, { useEffect, useState } from 'react';
+import LoginCheck from './LoginCheck';
 import AddBlog from './Components/AddBlog';
 import EditBlog from './Components/EditBlog';
 import ViewBlog from './Components/ViewBlog';
 
-
-const AppContent = () => {
+const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,7 +29,7 @@ const AppContent = () => {
         const result = await LoginCheck();
         if (result.loggedIn) {
           setIsLoggedIn(true);
-          setAuthorId(result.user._id); // Directly use `result.loggedIn`.
+          setAuthorId(result.user._id);
         } else {
           setIsLoggedIn(false);
         }
@@ -52,7 +50,7 @@ const AppContent = () => {
   const isLoginPageOrSignUpPage = location.pathname === '/login' || location.pathname === '/register';
 
   return (
-    <>
+    <Router>
       {!isLoginPageOrSignUpPage && <Navbar handleLogout={handleLogout} />}
       <Routes>
         {isLoggedIn ? (
@@ -75,16 +73,8 @@ const AppContent = () => {
         <Route path="*" element={<div>404 Not Found</div>} /> {/* Fallback route */}
       </Routes>
       {!isLoginPageOrSignUpPage && <Footer />}
-    </>
-  );
-};
-
-const App = () => {
-  return (
-    <>
-      <AppContent />
       <ToastContainer />
-    </>
+    </Router>
   );
 };
 
