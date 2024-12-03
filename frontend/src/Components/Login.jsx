@@ -15,13 +15,9 @@ const Login = () => {
       const response = await axiosInstance.post('/api/auth/login', {
         email: credentials.email,
         password: credentials.password,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
       });
     
-      const json = response.data; // Axios already parses the JSON response
+      const json = response.data;
       console.log(json);
     
       if (json.success) {
