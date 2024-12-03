@@ -147,16 +147,14 @@ router.get('/authors', async (req, res) => {
 
 // To display unique category
 router.get('/categories', async (req, res) => {
-    try {
-        const categories = await Blog.distinct('category');
-        if (categories.length === 0) {
-            return res.status(404).json({ message: "No categories found" });
-        }
-        res.json(categories);
-    }
-    catch (error) {
-        res.status(500).json({ message: "Failed to display categories", error: error.message })
-    }
+    let categories = [
+        "Technology",
+        "Sports",
+        "Business",
+        "Entertainment",
+        "Politics",
+        ];
+    res.json(categories);
 })
 
 module.exports = router;

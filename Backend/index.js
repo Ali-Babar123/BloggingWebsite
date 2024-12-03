@@ -6,7 +6,18 @@ const mongoose = require('mongoose');
 
 dotenv.config()
 
-app.use(express.json())
+app.use(cors({
+    origin: 'https://blogging-website-weld.vercel.app/' // middleware cors to connect with frontend
+}))
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://blogging-website-weld.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+  });
+
+app.use(express.json()) // middleware 
 
 const port = process.env.PORT;
 mongoose.connect(process.env.MONGO_URL)

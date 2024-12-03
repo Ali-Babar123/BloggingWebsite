@@ -3,30 +3,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from './axiosInstance';
 
 const Register = () => {
+  const [loading, setLoading] = useState(false)
   const [credentials, setCredentials] = useState({ username: '', email: '', password: '' });
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {username, email, password} = credentials;
+    const { username, email, password } = credentials;
+    setLoading(true);
 
     try {
       const response = await axiosInstance.post('/api/auth/createuser', {
         username,
         email,
         password,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
       });
-    
+
       const json = response.data; // Axios automatically parses the response
       console.log(json);
-    
+
       if (json.success) {
         localStorage.setItem('token', json.authToken);
         navigate('/dashboard');
+        setLoading(false)
       } else {
         alert(json.message || "Registration failed.");
       }
@@ -34,7 +33,7 @@ const Register = () => {
       console.error("Error in registration:", error);
       alert("An error occurred. Please try again later.");
     }
-    
+
   };
 
   const onChange = (e) => {
@@ -86,9 +85,10 @@ const Register = () => {
           </div>
           <button
             type="submit"
+            disabled={loading}
             className="w-full py-2 mt-4 font-semibold text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
           >
-            Sign Up
+            {loading ? 'Registering...' : 'Sign Up'}
           </button>
         </form>
       </div>
