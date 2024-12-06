@@ -22,7 +22,7 @@ const Login = () => {
     
       if (json.success) {
         localStorage.setItem('token', json.authToken);
-        navigate('/dashboard');
+        navigate('/api/blog/displayblog');
       } else {
         alert("Invalid Credentials");
       }
