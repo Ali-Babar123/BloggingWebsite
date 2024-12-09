@@ -119,7 +119,9 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-4 text-gray-700">{blog.title}</td>
                 <td className="px-6 py-4 text-gray-600">{blog.category}</td>
-                <td className="px-6 py-4 text-gray-500">{blog.content.replace(/<[^>]+>/g, "").slice(0, 50)}...</td>
+                <td className="px-6 py-4 text-gray-500">
+                {blog.content ? blog.content.replace(/<[^>]+>/g, "").slice(0, 50) + "..." : "No content available"}
+            </td>
                 <td className="px-6 py-4 text-gray-600">{new Date(blog.date).toLocaleDateString('en-GB', {
                   day: '2-digit',
                   month: 'short',

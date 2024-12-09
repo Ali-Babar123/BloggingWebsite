@@ -8,11 +8,11 @@ const BlogSchema = new Schema({
     },
     title: {
         type: String,
-        required: true
+        // required: true
     },
     content:{
         type: Schema.Types.Mixed,
-        required: true
+        // required: true
     },
     author: {
         type: String,
@@ -20,7 +20,7 @@ const BlogSchema = new Schema({
     },
     category: {
         type: String,
-        required: true
+        // required: true
     },
     date:{
         type: Date,

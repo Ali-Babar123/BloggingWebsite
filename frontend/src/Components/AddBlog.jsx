@@ -14,7 +14,7 @@ const AddBlog = ({ AuthorId }) => {
     const [category, setCategory] = useState('')
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
-    const [image, setImage] = useState('')
+    // const [image, setImage] = useState(null)
 
 
 
@@ -24,14 +24,15 @@ const AddBlog = ({ AuthorId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(AuthorId)
-
+        console.log('Title:', title);
+        console.log('Content:', content);
+        console.log('Category:', category);
         // Create FormData object
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
         formData.append('category', category);
-        formData.append('image', image); // Attach the image file
+        // formData.append('image', image);
 
         try {
             const response = await axiosInstance.post(
@@ -41,7 +42,8 @@ const AddBlog = ({ AuthorId }) => {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 }
             );
-            console.log('Blog added successfully:', response.data);
+
+            console.log(response);
             toast.success('Blog added successfully');
             navigate('/dashboard')
 
@@ -65,6 +67,8 @@ const AddBlog = ({ AuthorId }) => {
                         <input
                             type="text"
                             id="title"
+                            value={title}
+                            name="title"
                             placeholder="Enter blog title"
                             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-orange-300"
                             onChange={(e) => setTitle(e.target.value)}
@@ -75,6 +79,7 @@ const AddBlog = ({ AuthorId }) => {
                         </label>
                         <select
                             id="category"
+                            name="category"
                             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-orange-300"
                             onChange={(e) => setCategory(e.target.value)}
                             required
@@ -103,6 +108,7 @@ const AddBlog = ({ AuthorId }) => {
                         </label>
                         <ReactQuill
                             value={content}
+                            name="content"
                             onChange={handleChange}
                             placeholder="Write your blog content here..."
                             className="bg-white"
@@ -118,7 +124,7 @@ const AddBlog = ({ AuthorId }) => {
                             type="file"
                             id="image"
                             className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
-                            onChange={(e) => { setImage(e.target.files[0]) }}
+                        // onChange={(e) => { setImage(e.target.files[0]) }}
 
                         />
                     </div>
