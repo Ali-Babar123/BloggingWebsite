@@ -46,7 +46,7 @@ router.post('/addblog/:id',  async (req, res) => {
             author: authorName,
             category,
             authorId: id,
-            image: req.file.path,
+            // image: req.file.path,
         });
         res.json(blog);
     } catch (error) {
@@ -58,16 +58,16 @@ router.post('/addblog/:id',  async (req, res) => {
 router.put('/updateblog/:id',  async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, content, category, date, image } = req.body;
+        const { title, content, category, date} = req.body;
         const updateData = {title, category, date, content};
 
-        if (req.file){
-            updateData.image = req.file.path;
-        }
+        // if (req.file){
+        //     updateData.image = req.file.path;
+        // }
 
         const updateBlog = await Blog.findByIdAndUpdate(
             id,
-            { title, content, category, date, image },
+            { title, content, category, date},
             { new: true }
         );
         if (!updateBlog) {
