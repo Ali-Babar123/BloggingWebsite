@@ -106,7 +106,7 @@ const ViewBlog = () => {
                     </div>
                 </div>
             ) : (
-                <h2 className="text-center text-xl sm:text-2xl md:text-7xl p-10 sm:p-16 md:p-24 text-gray-600 font-bold">
+                <h2 className="text-center text-xl sm:text-2xl md:text-5xl p-10 sm:p-16 md:p-24 text-gray-600">
                     Loading...
                 </h2>
             )}
