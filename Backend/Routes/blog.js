@@ -95,7 +95,7 @@ router.get('/displayblog/:id', async (req, res) => {
         if (!blogs) {
             return res.status(404).json({ message: "Blog not found for this author" });
         }
-        res.json(blogs)
+        res.json(blogs);
     } catch (error) {
         res.status(500).json({ message: "Failed to display blogs", error: error.message });
     }

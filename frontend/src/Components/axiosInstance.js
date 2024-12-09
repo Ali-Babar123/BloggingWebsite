@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL: 'https://blogging-website-weld.vercel.app',
+    //  to connect with backend
+    baseURL: 'https://backend-lyart-six.vercel.app', 
 })
 
 export default axiosInstance
