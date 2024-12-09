@@ -3,35 +3,35 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/Blog');
 const Author = require('../models/Admin')
-const multer = require('multer')
+// const multer = require('multer')
 
 
 
 
 // To upload the image Route
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/')
-        },
-        filename: (req, file, cb) => {
-            cb(null, `${Date.now()}-${file.originalname}`);
-            }
-    })
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads/')
+//         },
+//         filename: (req, file, cb) => {
+//             cb(null, `${Date.now()}-${file.originalname}`);
+//             }
+//     })
 
     // file filter to allow specific images 
-    const fileFilter = (req, file, cb) => {
-        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif') {
-            cb(null, true);
-        } else {
-            cb(new Error('Only JPEG, PNG, and GIF files are allowed'), false);
-        }
-    };
+    // const fileFilter = (req, file, cb) => {
+    //     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif') {
+    //         cb(null, true);
+    //     } else {
+    //         cb(new Error('Only JPEG, PNG, and GIF files are allowed'), false);
+    //     }
+    // };
     
 
 
-    const upload = multer ({storage, fileFilter})
+    // const upload = multer ({storage, fileFilter})
 // Route to add a blog
-router.post('/addblog/:id', upload.single('image'),  async (req, res) => {
+router.post('/addblog/:id',  async (req, res) => {
     try {
         const { title, content, category } = req.body;
         const id = req.params.id;
@@ -55,7 +55,7 @@ router.post('/addblog/:id', upload.single('image'),  async (req, res) => {
 });
 
 // Route to update a blog
-router.put('/updateblog/:id', upload.single('image'), async (req, res) => {
+router.put('/updateblog/:id',  async (req, res) => {
     try {
         const { id } = req.params;
         const { title, content, category, date, image } = req.body;
