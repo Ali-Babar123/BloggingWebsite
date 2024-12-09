@@ -26,7 +26,7 @@ const App = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axiosInstance.get('/api/check-login'); // Example endpoint for checking login
+        const response = await LoginCheck(); // Example endpoint for checking login
         if (response.data.loggedIn) {
           setIsLoggedIn(true);
           setAuthorId(response.data.user._id);
@@ -40,7 +40,7 @@ const App = () => {
     };
     getUser();
   }, [location]);
-  
+
 
   const handleLogout = () => {
     localStorage.removeItem('token');
