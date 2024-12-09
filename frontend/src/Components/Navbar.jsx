@@ -38,7 +38,7 @@ const Navbar = ({ handleLogout }) => {
 
           {/* Centered Author Dashboard */}
           {isLoggedIn && (
-            <h2 className="text-4xl font-bold text-orange-500 absolute left-1/2 transform -translate-x-1/2">
+            <h2 className="text-4xl font-bold text-orange-500 hidden md:block absolute left-1/2 transform -translate-x-1/2 lg:text-3xl">
               Author Dashboard
             </h2>
           )}

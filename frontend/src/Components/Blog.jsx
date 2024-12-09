@@ -19,20 +19,20 @@ const Blog = () => {
 
   return (
     <div>
-                <h2 data-aos='fade-down' className='flex justify-center text-5xl  mt-10'>My Blogs</h2>
-
-      <div className="cards-container h-full grid grid-cols-12 gap-2 justify-center items-center mt-14 px-10">
+      <h2 data-aos='fade-down' className='flex justify-center text-5xl mt-10'>My Blogs</h2>
+  
+      <div className="cards-container h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center items-center mt-14 px-10">
         {blogs.length === 0 ? (
           <p className="text-center text-gray-500 text-5xl font-bold">No Blogs Available.</p>
         ) : (
           blogs.map((blog, index) => {
             // Apply conditional column spans based on the index of the blog
             const isLargeCard = (index + 1) % 4 === 1;  // 4n-3 condition
-
+  
             return (
               <div
                 key={blog._id}
-                className={`card-item border h-full transition duration-300 transform hover:scale-105 bg-gray-300 shadow-md ${isLargeCard ? 'col-span-6' : 'col-span-3'}`}
+                className={`card-item border h-full transition duration-300 transform hover:scale-105 bg-gray-300 shadow-md ${isLargeCard ? 'lg:col-span-2 sm:col-span-1' : 'col-span-1'}`}
               >
                 <img
                   src={BlogImage}
@@ -62,9 +62,9 @@ const Blog = () => {
           })
         )}
       </div>
-      <NewsLetterBox/>
+      <NewsLetterBox />
     </div>
   );
-};
-
+}
+  
 export default Blog;

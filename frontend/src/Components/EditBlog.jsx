@@ -75,7 +75,7 @@ const EditBlog = () => {
 
 
     return (
-        <div className="min-h-screen px-8 flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen px-8 flex items-center justify-center">
             <div className="bg-white min-w-full p-12 m-10 rounded-md shadow-md w-full max-w-lg">
                 <h2 className="text-3xl font-bold text-gray-700 mb-6 text-center">Update Blog</h2>
                 <form className="space-y-4" onSubmit={handleSubmit}>

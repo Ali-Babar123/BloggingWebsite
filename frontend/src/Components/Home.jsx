@@ -95,7 +95,7 @@ const Home = () => {
                                     className="absolute inset-0 w-full h-full object-cover rounded-full"
                                 />
                                 <div className="card-body absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-full group">
-                                    <h2 className="card-title text-white text-4xl sm:text-md md:text-lg ">
+                                    <h2 className="card-title text-white text-xl sm:text-md md:text-xl ">
                                         {category}
                                     </h2>
                                 </div>

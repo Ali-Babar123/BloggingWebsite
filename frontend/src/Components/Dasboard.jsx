@@ -84,16 +84,17 @@ const Dashboard = () => {
 
   return (
     <div className="container mx-auto px-6 py-12">
+      {/* Header Section */}
       <div className="flex flex-col md:flex-row items-center justify-between mb-10">
-        <h1 className="text-5xl font-bold text-gray-600">Your Blogs</h1>
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-600">Your Blogs</h1>
         <Link to="/addBlog">
-        <button className="bg-orange-500 hover:bg-orange-600 py-3 px-6 text-white font-bold rounded-lg shadow-md transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">
-    Create a Blog
-</button>
-
+          <button className="bg-orange-500 hover:bg-orange-600 py-3 px-6 text-white font-bold rounded-lg shadow-md transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 mt-4 md:mt-0">
+            Create a Blog
+          </button>
         </Link>
       </div>
-
+  
+      {/* Table Section */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-gray-100 border-b border-gray-300">
@@ -115,23 +116,32 @@ const Dashboard = () => {
                     alt={blog.title}
                     className="w-12 h-12 object-cover rounded-md"
                   />
-
                 </td>
                 <td className="px-6 py-4 text-gray-700">{blog.title}</td>
                 <td className="px-6 py-4 text-gray-600">{blog.category}</td>
                 <td className="px-6 py-4 text-gray-500">
-                {blog.content ? blog.content.replace(/<[^>]+>/g, "").slice(0, 50) + "..." : "No content available"}
-            </td>
-                <td className="px-6 py-4 text-gray-600">{new Date(blog.date).toLocaleDateString('en-GB', {
-                  day: '2-digit',
-                  month: 'short',
-                  year: 'numeric',
-                })}</td>
+                  {blog.content
+                    ? blog.content.replace(/<[^>]+>/g, "").slice(0, 50) + "..."
+                    : "No content available"}
+                </td>
+                <td className="px-6 py-4 text-gray-600">
+                  {new Date(blog.date).toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                  })}
+                </td>
                 <td className="px-6 py-8 flex justify-center gap-4">
-                  <button className="text-blue-500 hover:text-blue-600" onClick={() => handleEditBlog(blog._id)}>
+                  <button
+                    className="text-blue-500 hover:text-blue-600"
+                    onClick={() => handleEditBlog(blog._id)}
+                  >
                     <FaEdit className="text-lg" />
                   </button>
-                  <button className="text-red-500 hover:text-red-600" onClick={() => handleDeleteBlog(blog._id)}>
+                  <button
+                    className="text-red-500 hover:text-red-600"
+                    onClick={() => handleDeleteBlog(blog._id)}
+                  >
                     <FaTrash className="text-lg" />
                   </button>
                 </td>
@@ -142,6 +152,5 @@ const Dashboard = () => {
       </div>
     </div>
   );
-};
-
+}  
 export default Dashboard;
