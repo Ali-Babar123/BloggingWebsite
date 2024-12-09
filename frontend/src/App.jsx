@@ -27,9 +27,10 @@ const App = () => {
     const getUser = async () => {
       try {
         const response = await LoginCheck(); // Example endpoint for checking login
-        if (response.data.loggedIn) {
+        // console.log(response)
+        if (response.loggedIn) {
           setIsLoggedIn(true);
-          setAuthorId(response.data.user._id);
+          setAuthorId(response.user._id);
         } else {
           setIsLoggedIn(false);
         }
