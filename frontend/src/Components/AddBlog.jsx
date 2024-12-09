@@ -61,7 +61,7 @@ const AddBlog = ({ AuthorId }) => {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {/* Blog Title */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-600 mb-1" htmlFor="title">
+                        <label className="block text-sm font-medium text-gray-600 mb-2" htmlFor="title">
                             Title
                         </label>
                         <input
@@ -74,7 +74,7 @@ const AddBlog = ({ AuthorId }) => {
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />
-                        <label className="block text-sm mt-2 font-medium text-gray-600 mb-1" htmlFor="category">
+                        <label className="block text-sm mt-2 font-medium text-gray-600 mb-2" htmlFor="category">
                             Category
                         </label>
                         <select
@@ -103,7 +103,7 @@ const AddBlog = ({ AuthorId }) => {
 
                     {/* Blog Content */}
                     <div>
-                        <label className="block  text-sm font-medium text-gray-600 mb-1" htmlFor="content">
+                        <label className="block  text-sm font-medium text-gray-600 mb-2" htmlFor="content">
                             Content
                         </label>
                         <ReactQuill
@@ -112,18 +112,18 @@ const AddBlog = ({ AuthorId }) => {
                             onChange={handleChange}
                             placeholder="Write your blog content here..."
                             className="bg-white"
-                            style={{ height: '200px' }}
+                            style={{ height: '150px' }}
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-600 mb-1 mt-14" htmlFor="image">
-                            Image
+                        <label className="block text-sm  font-medium text-gray-600 sm:mt-20 mt-28" htmlFor="image">
+                           Upload Image
                         </label>
                         <input
                             type="file"
                             id="image"
-                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
+                            className="w-full mt-2 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
                         // onChange={(e) => { setImage(e.target.files[0]) }}
 
                         />
