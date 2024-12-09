@@ -1,16 +1,18 @@
 import React from "react";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import NewsLetterBox from './NewsLetterBox.jsx';
 
 const Contact = () => {
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <>
+        <div className="min-h-screen flex items-center justify-center">
             <div className="container mx-auto p-8">
                 {/* Header */}
                 <h2 data-aos='fade-down' className="text-4xl font-bold text-center text-gray-800 mb-8">
                     Contact Us
                 </h2>
 
-                <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between bg-white rounded-lg shadow-lg p-6 md:p-10 space-y-8 md:space-y-0">
+                <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between bg-white rounded-lg p-6 md:p-10 space-y-8 md:space-y-0">
                     {/* Contact Info */}
                     <div className="md:w-1/2 space-y-6">
                         <h3 className="text-2xl font-semibold text-gray-700">
@@ -103,6 +105,8 @@ const Contact = () => {
                 </div>
             </div>
         </div>
+            <NewsLetterBox/>
+            </>
     );
 };
 

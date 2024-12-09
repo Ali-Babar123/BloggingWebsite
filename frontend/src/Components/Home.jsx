@@ -9,6 +9,7 @@ import "aos/dist/aos.css"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import axiosInstance from './axiosInstance';
+import NewsLetterBox from './NewsLetterBox.jsx'
 
 const Home = () => {
     const [blogs, setBlogs] = useState([]);
@@ -44,7 +45,7 @@ const Home = () => {
         superLargeDesktop: { breakpoint: { max: 4000, min: 1536 }, items: 6 },
         desktop: { breakpoint: { max: 1536, min: 1024 }, items: 5 },
         tablet: { breakpoint: { max: 1024, min: 768 }, items: 3 },
-        mobile: { breakpoint: { max: 768, min: 0 }, items: 1 },
+        mobile: { breakpoint: { max: 768, min: 0 }, items: 2 },
     };
 
 
@@ -53,14 +54,14 @@ const Home = () => {
         <div>
             <div className=" home-section mx-auto">
                 <div className="text-white text-center bg-black py-36">
-                    <h1 data-aos='fade-down' className="text-5xl  flex justify-center lg:text-7xl font-bold p-4 ">Welcome to our Blogs</h1>
-                    <p data-aos='fade-down' className='text-white font-semibold mt-4'>A blog is an informational website consisting of discrete, often informal diary-style text entries.Some quick example text to build on the card title and make</p>
+                    <h1 data-aos='fade-down' className="text-5xl  flex justify-center lg:text-7xl  p-4 ">Welcome to our Blogs</h1>
+                    <p data-aos='fade-down' className='text-white  mt-4'>A blog is an informational website consisting of discrete, often informal diary-style text entries.Some quick example text to build on the card title and make</p>
                     <div className="learn-more mt-4 flex justify-center font-medium text-orange-500 items-center">
                         <Link to='/blog' className='flex border rounded-md p-3 text-white border-black  bg-orange-600'>Learn More  <FaArrowRight className='ml-2 text-white text-2xl' /></Link>
                     </div>
                 </div>
 
-                <h2 data-aos='fade-down' className='flex justify-center text-5xl font-bold mt-10'>Popular Categories</h2>
+                <h2 data-aos='fade-down' className='flex justify-center text-5xl mt-12'>Popular Categories</h2>
 
                 <Carousel
                     responsive={responsive}
@@ -79,14 +80,14 @@ const Home = () => {
                     itemClass="carousel-item-padding-2-px" // Reduced padding
                 >
                     {categories.length === 0 ? (
-                        <p className="text-center text-gray-500 text-5xl font-bold">
+                        <p className="text-center text-gray-500 text-5xl">
                             No Categories Available.
                         </p>
                     ) : (
                         categories.map((category, index) => (
                             <div
                                 key={index}
-                                className="card w-40 h-40 md:w-48 md:h-48 rounded-full border shadow-md transition duration-300 transform hover:scale-105 bg-gray-300 relative overflow-hidden"
+                                className="card w-40 h-40 md:w-48 md:h-48 font-medium rounded-full border shadow-md transition duration-300 transform hover:scale-105 bg-gray-300 relative overflow-hidden"
                             >
                                 <img
                                     src={AiImage}
@@ -94,7 +95,7 @@ const Home = () => {
                                     className="absolute inset-0 w-full h-full object-cover rounded-full"
                                 />
                                 <div className="card-body absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-full group">
-                                    <h2 className="card-title text-white text-4xl sm:text-md md:text-lg font-bold">
+                                    <h2 className="card-title text-white text-4xl sm:text-md md:text-lg ">
                                         {category}
                                     </h2>
                                 </div>
@@ -105,7 +106,7 @@ const Home = () => {
 
 
 
-                <h2 data-aos='fade-down' className='flex justify-center text-5xl font-bold mt-16'>Our Latest Blogs</h2>
+                <h2 data-aos='fade-down' className='flex justify-center text-5xl font-bold mt-24'>Our Latest Blogs</h2>
                 <div className=" cards-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-center mt-16  px-12 ">
                     {blogs.length === 0 ? (
                         <p className="text-center text-gray-500 text-5xl font-bold">No Blogs Available.</p>
@@ -139,8 +140,7 @@ const Home = () => {
                         ))
                     )}
                 </div>
-
-
+               <NewsLetterBox/>
 
 
 

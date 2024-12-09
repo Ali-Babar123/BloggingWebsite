@@ -2,9 +2,10 @@
 
 
 import {useState, useEffect} from 'react'
-import AuhtorImage from '../assets/boy.jpeg'
-import axios from 'axios'
+import AuhtorImage from '../assets/Author1.jpeg'
+
 import axiosInstance from './axiosInstance';
+import NewsLetterBox from './NewsLetterBox.jsx'
 
 
 const Author = () => {
@@ -22,9 +23,9 @@ const Author = () => {
             }, []);
   return (
     <div>
-                <h2 data-aos='fade-down' className='flex justify-center text-5xl font-bold mt-8'>Popular Authors</h2>
+                <h2 data-aos='fade-down' className='flex justify-center text-5xl font-bold mt-12'>Popular Authors</h2>
       
-      <div className="cards-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-8 px-8 mt-16">
+      <div className="cards-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-8 px-12 mt-14">
                     {authors.length === 0 ? (
                         <p className="text-center text-gray-500 text-5xl font-bold">No Author Available.</p>
                     ) : (
@@ -42,7 +43,7 @@ const Author = () => {
                         ))
                     )}
                 </div>
-                
+                <NewsLetterBox/>
     </div>
   )
 }

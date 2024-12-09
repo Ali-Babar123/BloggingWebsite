@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BlogImage from '../assets/blog.jpeg';
-import axios from 'axios';
+import NewsLetterBox from './NewsLetterBox.jsx';
 import axiosInstance from './axiosInstance';
 
 const Blog = () => {
@@ -19,7 +19,7 @@ const Blog = () => {
 
   return (
     <div>
-                <h2 data-aos='fade-down' className='flex justify-center text-5xl font-bold mt-10'>My Blogs</h2>
+                <h2 data-aos='fade-down' className='flex justify-center text-5xl  mt-10'>My Blogs</h2>
 
       <div className="cards-container h-full grid grid-cols-12 gap-2 justify-center items-center mt-14 px-10">
         {blogs.length === 0 ? (
@@ -62,6 +62,7 @@ const Blog = () => {
           })
         )}
       </div>
+      <NewsLetterBox/>
     </div>
   );
 };
