@@ -7,12 +7,14 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axiosInstance from './axiosInstance';
 import BlogImage from '../assets/blog.jpeg'
+import { FaSpinner } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [blogs, setBlogs] = useState([])
   const [authorId, setAuthorId] = useState('')
   const navigate = useNavigate();
   const location = useLocation()
+  const [loading, setLoading] = useState(true)
 
 
   useEffect(() => {
@@ -34,8 +36,10 @@ const Dashboard = () => {
         const response = await axiosInstance.get(`/api/blog/displayblog/${authorId}`)
         console.log(response.data)
         setBlogs(response.data || [])
+        setLoading(false)
       } catch (error) {
         console.log(error)
+        setLoading(false)
       }
     }
     getBlogs();
@@ -95,6 +99,11 @@ const Dashboard = () => {
       </div>
   
       {/* Table Section */}
+      {loading ? (
+        <div className="flex items-center justify-center h-56">
+          <FaSpinner size={60} className="animate-spin text-gray-500" />
+        </div>
+      ) : (
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-gray-100 border-b border-gray-300">
@@ -150,6 +159,7 @@ const Dashboard = () => {
           </tbody>
         </table>
       </div>
+      )}
     </div>
   );
 }  
