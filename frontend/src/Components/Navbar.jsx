@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HiMenu, HiX } from 'react-icons/hi';
 import LoginCheck from '../LoginCheck';
+import { FaUserCircle } from "react-icons/fa"
 
 const Navbar = ({ handleLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,6 +73,7 @@ const Navbar = ({ handleLogout }) => {
             {isLoggedIn ? (
               <>
                 <span className="text-lg font-semibold text-orange-500">{username}</span>
+                {/* <FaUserCircle className="w-8 h-8 text-orange-500" /> */}
                 <button
                   onClick={Logout}
                   className="text-lg px-4 py-2 font-medium text-white bg-orange-500 rounded-sm hover:bg-orange-600"
