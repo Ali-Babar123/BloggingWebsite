@@ -4,8 +4,8 @@ import ReactQuill from 'react-quill';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axiosInstance from './axiosInstance';
 import 'react-toastify/dist/ReactToastify.css';
+import axiosInstance from './axiosInstance';
 
 
 const AddBlog = ({ AuthorId }) => {
@@ -56,7 +56,7 @@ const AddBlog = ({ AuthorId }) => {
 
     return (
         <div className="min-h-screen px-8 flex items-center justify-center">
-            <div className="bg-white min-w-full p-12 m-10 rounded-md shadow-md w-full max-w-lg">
+            <div className="bg-white min-w-full p-8 m-10 rounded-md shadow-md w-full max-w-lg">
                 <h2 className="text-3xl font-bold text-gray-700 mb-6 text-center">Add New Blog</h2>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {/* Blog Title */}
@@ -74,7 +74,7 @@ const AddBlog = ({ AuthorId }) => {
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />
-                        <label className="block text-sm mt-2 font-medium text-gray-600 mb-2" htmlFor="category">
+                        <label className="block text-sm mt-4 font-medium text-gray-600 mb-2" htmlFor="category">
                             Category
                         </label>
                         <select
@@ -133,7 +133,7 @@ const AddBlog = ({ AuthorId }) => {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="px-6 py-2 bg-orange-500 text-white font-medium rounded-md hover:bg-orange-600"
+                            className="px-6 py-2 mt-4 bg-orange-500 text-white font-medium rounded-md hover:bg-orange-600"
                         >
                             Add Blog
                         </button>

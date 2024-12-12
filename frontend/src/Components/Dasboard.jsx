@@ -50,18 +50,7 @@ const Dashboard = () => {
       const response = await axiosInstance.delete(`/api/blog/deleteblog/${id}`)
       console.log(response.data)
       setBlogs(blogs.filter((blog) => blog._id !== id))
-      toast.error('Blog deleted successfully!',{
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        
-                      
-      })
+      toast.success('Blog deleted successfully!')
     } catch (error) {
 
       console.log('Error in Deleting the Blog', error)
@@ -92,7 +81,7 @@ const Dashboard = () => {
       <div className="flex flex-col md:flex-row items-center justify-between mb-10">
         <h1 className="text-3xl md:text-5xl font-bold text-gray-600">Your Blogs</h1>
         <Link to="/addBlog">
-          <button className="bg-orange-500 hover:bg-orange-600 py-3 px-6 text-white font-bold rounded-lg shadow-md transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 mt-4 md:mt-0">
+          <button className="bg-white text-lg hover:bg-orange-600 py-3 px-6 text-orange-600 hover:text-white font-semibold rounded-md shadow-md transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 mt-4 md:mt-0">
             Create a Blog
           </button>
         </Link>

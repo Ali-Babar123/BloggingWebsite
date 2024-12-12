@@ -5,6 +5,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill';
 import axiosInstance from './axiosInstance';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import { useNavigate, useParams } from 'react-router-dom'
@@ -14,13 +16,7 @@ const EditBlog = () => {
     const navigate = useNavigate()
     const [content, setContent] = useState('');
 
-    const [blog, setBlog] = useState({
-        // title: '',
-        // content: '',
-        // author: '',
-        // image: '',
-        // category: '' 
-    });
+    const [blog, setBlog] = useState({});
     
 
     useEffect(() => {
@@ -42,21 +38,10 @@ const EditBlog = () => {
         try {
             const response = await axiosInstance.put(`/api/blog/updateblog/${id}`, blog)
             navigate('/dashboard')
-            toast.success('Blog Updated successfully', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                
-
-            });
+            toast.success('Blog Updated successfully');
         } catch (error) {
             console.log('Error in Editing the Blog', error)
-
+            toast.error('Error in updating the Blog');
         }
 
     }
@@ -76,7 +61,7 @@ const EditBlog = () => {
 
     return (
         <div className="min-h-screen px-8 flex items-center justify-center">
-            <div className="bg-white min-w-full p-12 m-10 rounded-md shadow-md w-full max-w-lg">
+            <div className="bg-white min-w-full p-8 m-10 rounded-md shadow-md w-full max-w-lg">
                 <h2 className="text-3xl font-bold text-gray-700 mb-6 text-center">Update Blog</h2>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {/* Blog Title */}
@@ -93,7 +78,7 @@ const EditBlog = () => {
                             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-orange-300"
                             onChange={handleChange}
                         />
-                        <label className="block text-sm mt-2 font-medium text-gray-600 mb-2">
+                        <label className="block text-sm mt-4 font-medium text-gray-600 mb-2">
                             Category
                         </label>
                         <input
@@ -139,7 +124,7 @@ const EditBlog = () => {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="px-6 py-2 bg-orange-500 text-white font-medium rounded-md hover:bg-orange-600"
+                            className="px-6 py-2 mt-4 bg-orange-500 text-white font-medium rounded-md hover:bg-orange-600"
                         >
                             Update Blog
                         </button>

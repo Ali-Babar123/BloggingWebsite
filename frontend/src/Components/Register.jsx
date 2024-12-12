@@ -41,8 +41,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white border border-gray-300 rounded-lg shadow-md">
+    <div className="flex justify-center flex-col items-center bg-gray-100 min-h-screen">
+        <h1 className='mb- text-5xl font-bold text-orange-500' >Welcome to Blog Sphere! <span className='flex mb-10 flex-col text-4xl items-center sm:items-center text-gray-700'></span></h1>
+      <div className="w-full max-w-md p-8 bg-white border rounded-sm ">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Sign Up</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -52,7 +53,7 @@ const Register = () => {
               name="username"
               value={credentials.username}
               onChange={onChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               required
             />
           </div>
@@ -63,7 +64,7 @@ const Register = () => {
               name="email"
               value={credentials.email}
               onChange={onChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               required
             />
           </div>
@@ -74,7 +75,7 @@ const Register = () => {
               name="password"
               value={credentials.password}
               onChange={onChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               required
             />
           </div>
@@ -86,7 +87,7 @@ const Register = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 mt-4 font-semibold text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="w-full py-2 mt-4 font-semibold text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
           >
             {loading ? 'Registering...' : 'Sign Up'}
           </button>
